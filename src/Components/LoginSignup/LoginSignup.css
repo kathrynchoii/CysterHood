@@ -28,7 +28,7 @@
 }
 
 .text {
-    color: #ffb6c1;
+    color: #ff86a9;
     font-size: 48px;
     font-weight: 700;
 }
@@ -158,6 +158,11 @@
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
+    transition: background 0.3s ease; /* Smooth transition */
+
+}
+.submit:hover {
+    background: #fc6d96; /* Change this to your desired hover color */
 }
 
 .gray {
