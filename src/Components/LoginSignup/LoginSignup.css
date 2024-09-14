@@ -158,11 +158,12 @@
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
-    transition: background 0.3s ease; /* Smooth transition */
+    transition: background 0.3s ease;
 
 }
+
 .submit:hover {
-    background: #fc6d96; /* Change this to your desired hover color */
+    background: #fc6d96;
 }
 
 .gray {

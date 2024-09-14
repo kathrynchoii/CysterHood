@@ -1,12 +1,16 @@
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginSignup from './Components/LoginSignup/LoginSignup';
-import './App.css';
+import SurveyForm from './Components/Survey/Survey';
 
 function App() {
   return (
-    <div>
-      <LoginSignup />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginSignup />} />
+        <Route path="/survey" element={<SurveyForm />} />
+      </Routes>
+    </Router>
   );
 }
 

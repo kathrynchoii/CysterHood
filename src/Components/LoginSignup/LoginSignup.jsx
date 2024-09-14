@@ -1,43 +1,36 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginSignup.css';
-// import { useGoogleAuth } from '../../googleAuth';
 
 import user_icon from '../Assets/user.png';
 import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password-lock.png';
 import hide_password_icon from '../Assets/password-eye-closed.png';
 import show_password_icon from '../Assets/password-eye-open.png';
-// import evergreen_logo from '../Assets/evergreenlogo.png';
 
 export const LoginSignup = () => {
     const [action, setAction] = useState("Sign Up");
     const [showPassword, setShowPassword] = useState(false);
     const [passwordStrength, setPasswordStrength] = useState(null);
-    const [resetPassword, setResetPassword] = useState(false); // State for password reset page
+    const [resetPassword, setResetPassword] = useState(false);
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [passwordsMatch, setPasswordsMatch] = useState(true);
 
-    // useGoogleAuth();
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
     const evaluatePasswordStrength = (password) => {
-        // Password length check
         if (password.length < 8) {
             return "Weak: Password must be at least 8 characters long";
         }
-
-        // Special symbol check
         const specialSymbolsRegex = /[$&%!@?]/;
         if (!specialSymbolsRegex.test(password)) {
             return "Weak: Password must contain at least one special symbol ($&%!@?)";
         }
-
-        // Character types check
         const containsUpperCase = /[A-Z]/.test(password);
         const containsLowerCase = /[a-z]/.test(password);
         const containsNumber = /[0-9]/.test(password);
@@ -51,7 +44,6 @@ export const LoginSignup = () => {
             return "Medium: Password must contain characters from at least two of the following: uppercase letters, lowercase letters, and numbers";
         }
 
-        // If password passes all checks
         return "Strong";
     };
 
@@ -75,13 +67,21 @@ export const LoginSignup = () => {
 
     const handleActionChange = (newAction) => {
         setAction(newAction);
-        setResetPassword(false); // Reset password state when switching action
+        setResetPassword(false);
+    };
+
+    // Redirect to Survey page on sign-up
+    const handleSignUpClick = () => {
+        if (action === "Sign Up") {
+            navigate('/survey'); // Redirect to /survey
+        } else {
+            setAction("Sign Up");
+        }
     };
 
     return (
         <div className='container'>
             <div className="header">
-                {/* <img src={evergreen_logo} alt="" /> */}
                 <div className="text">{action}</div>
                 <div className="underline"></div>
             </div>
@@ -134,7 +134,6 @@ export const LoginSignup = () => {
                         <div className="or-text">or</div>
                         <div className="divider"></div>
                     </div>
-                    {/* <div id="googleSignInDiv"></div> */}
                 </div>
             )}
             {action === "Login" ? (
@@ -143,7 +142,7 @@ export const LoginSignup = () => {
                 </div>
             ) : null}
             <div className="submit-container">
-                <div className={action === "Login" ? "submit gray" : "submit"} onClick={() => handleActionChange("Sign Up")}>Sign Up</div>
+                <div className={action === "Login" ? "submit gray" : "submit"} onClick={handleSignUpClick}>Sign Up</div>
                 <div className={action === "Sign Up" ? "submit gray" : "submit"} onClick={() => handleActionChange("Login")}>Login</div>
             </div>
         </div>
