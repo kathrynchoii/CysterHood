@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+.survey-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 40px;
+    width: 80%;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Lato', sans-serif;
+}
+
+.survey-container h3 {
+    color: #ff86a9;
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 100%;
+}
+
+.survey-container label {
+    display: block;
+    margin-bottom: 15px;
+    color: #797979;
+    font-size: 18px;
+}
+
+.survey-container input[type="radio"],
+.survey-container input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.survey-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+}
+
+.survey-container button {
+    width: 100%;
+    padding: 15px;
+    background: #ffb6c1;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.survey-container button:hover {
+    background: #fc6d96;
+}
+
+.survey-container .form-group {
+    margin-bottom: 20px;
+}
+
+.survey-container .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.survey-container .checkbox-group label {
+    width: 48%;
+    margin-bottom: 10px;
+}
+
+.survey-container .checkbox-group input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.survey-container .other-input {
+    margin-top: 10px;
+}
