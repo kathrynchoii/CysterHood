@@ -80,7 +80,7 @@
     border-radius: 6px;
 }
 
-.input img {
+.input img { /*input labels of each box */
     margin: 0px 30px;
     width: 24px;
     height: 24px;
@@ -97,17 +97,17 @@
     font-family: 'Lato', sans-serif;
 }
 
-.input input::placeholder,
+.input input::placeholder, /*labels of each section "name" "email" "password*/
 .input-label {
     font-family: 'Lato', sans-serif;
     font-size: 18px;
 }
 
-.or-divider {
+.or-divider { /*line with "or" */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 49px;
 }
 
 .divider {
@@ -116,7 +116,7 @@
     background-color: #ccc;
 }
 
-.or-text {
+.or-text { 
     margin: 0 10px;
     color: #797979;
     font-size: 18px;
@@ -169,4 +169,12 @@
 .gray {
     background: #EAEAEAEA;
     color: #676767;
+}
+
+.password-strength {
+    margin-left: 60px; /* aligns with inputs */
+    margin-top: 5px;
+    font-size: 16px;
+    color: #ff6b6b;
+    font-weight: 400;
 }

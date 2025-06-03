@@ -64,7 +64,7 @@ function SurveyForm() {
 
         {/* Question 2 */}
         <div className="form-group">
-          <h3>2. What is your height?</h3>
+          <h3>2. What is your height? (Ex: 5'4)</h3>
           <input
             type="text"
             name="height"
@@ -76,7 +76,7 @@ function SurveyForm() {
 
         {/* Question 3 */}
         <div className="form-group">
-          <h3>3. What is your weight?</h3>
+          <h3>3. What is your weight?(In pounds)</h3>
           <input
             type="text"
             name="weight"
@@ -100,6 +100,7 @@ function SurveyForm() {
             {option}
           </label>
         ))}
+
 
         {/* Question 5 */}
         <div className="form-group">
