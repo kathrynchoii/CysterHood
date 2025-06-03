@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Survey.css'; // Make sure to import the CSS file
+import './Survey.css';
 
 function SurveyForm() {
   const [surveyData, setSurveyData] = useState({
@@ -14,7 +14,6 @@ function SurveyForm() {
     otherGoal: '',
   });
 
-  // Handle radio buttons and text inputs
   const handleChange = (e) => {
     setSurveyData({
       ...surveyData,
@@ -22,7 +21,6 @@ function SurveyForm() {
     });
   };
 
-  // Handle checkboxes for symptoms and health goals
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
     if (checked) {
@@ -38,16 +36,33 @@ function SurveyForm() {
     }
   };
 
-  // Submit the form
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(surveyData); // Process the form data or send it to the backend
+
+    try {
+      const response = await fetch('http://localhost:5000/submit-survey', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(surveyData),
+      });
+
+      const result = await response.text();
+      console.log("📬 Server response:", result);
+
+      if (response.ok) {
+        alert('✅ Survey submitted successfully!');
+      } else {
+        alert('❌ Failed to submit survey: ' + result);
+      }
+    } catch (error) {
+      console.error('❌ Network error:', error);
+      alert('❌ Error submitting survey.');
+    }
   };
 
   return (
     <div className="survey-container">
       <form onSubmit={handleSubmit}>
-        {/* Question 1 */}
         <h3>1. What is your age group?</h3>
         {['18-25', '25-34', '35-44', '45-54', '55-64', '65 or over'].map((age) => (
           <label key={age}>
@@ -62,7 +77,6 @@ function SurveyForm() {
           </label>
         ))}
 
-        {/* Question 2 */}
         <div className="form-group">
           <h3>2. What is your height? (Ex: 5'4)</h3>
           <input
@@ -74,9 +88,8 @@ function SurveyForm() {
           />
         </div>
 
-        {/* Question 3 */}
         <div className="form-group">
-          <h3>3. What is your weight?(In pounds)</h3>
+          <h3>3. What is your weight? (in pounds)</h3>
           <input
             type="text"
             name="weight"
@@ -86,7 +99,6 @@ function SurveyForm() {
           />
         </div>
 
-        {/* Question 4 */}
         <h3>4. Have you been professionally diagnosed?</h3>
         {['Yes', 'No'].map((option) => (
           <label key={option}>
@@ -101,12 +113,19 @@ function SurveyForm() {
           </label>
         ))}
 
-
-        {/* Question 5 */}
         <div className="form-group">
-          <h3>5. Which of the following symptoms have you experienced in the past 6 months?</h3>
+          <h3>5. Which symptoms have you experienced in the past 6 months?</h3>
           <div className="checkbox-group">
-            {['Irregular periods', 'Heavy periods', 'Acne', 'Thinning hair/hair loss', 'Unwanted facial or body hair', 'Weight gain or difficulty losing weight', 'Darkening of the skin', 'Mood swings'].map((symptom) => (
+            {[
+              'Irregular periods',
+              'Heavy periods',
+              'Acne',
+              'Thinning hair/hair loss',
+              'Unwanted facial or body hair',
+              'Weight gain or difficulty losing weight',
+              'Darkening of the skin',
+              'Mood swings'
+            ].map((symptom) => (
               <label key={symptom}>
                 <input
                   type="checkbox"
@@ -121,7 +140,6 @@ function SurveyForm() {
           </div>
         </div>
 
-        {/* Question 6 */}
         <h3>6. Do you experience irregular menstrual cycles?</h3>
         {['Yes', 'Sometimes', 'Regular'].map((option) => (
           <label key={option}>
@@ -136,7 +154,6 @@ function SurveyForm() {
           </label>
         ))}
 
-        {/* Question 7 */}
         <h3>7. Have you experienced significant weight changes in the past year?</h3>
         {['Yes - gained weight', 'No - lost weight', 'No changes'].map((option) => (
           <label key={option}>
@@ -151,11 +168,18 @@ function SurveyForm() {
           </label>
         ))}
 
-        {/* Question 8 */}
         <div className="form-group">
           <h3>8. What are your primary health goals related to managing PCOS?</h3>
           <div className="checkbox-group">
-            {['Regulating menstrual cycles', 'Managing weight', 'Improving fertility', 'Reducing acne or skin issues', 'Reducing unwanted hair growth', 'Improving energy levels', 'Reducing stress or improving mental health'].map((goal) => (
+            {[
+              'Regulating menstrual cycles',
+              'Managing weight',
+              'Improving fertility',
+              'Reducing acne or skin issues',
+              'Reducing unwanted hair growth',
+              'Improving energy levels',
+              'Reducing stress or improving mental health'
+            ].map((goal) => (
               <label key={goal}>
                 <input
                   type="checkbox"
@@ -169,7 +193,6 @@ function SurveyForm() {
             ))}
           </div>
 
-          {/* Other option with text input */}
           <label>
             <input
               type="checkbox"
