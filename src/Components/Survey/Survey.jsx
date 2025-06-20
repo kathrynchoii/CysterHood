@@ -15,23 +15,24 @@ function SurveyForm() {
   });
 
   const handleChange = (e) => {
-    setSurveyData({
-      ...surveyData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setSurveyData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
     if (checked) {
-      setSurveyData((prevState) => ({
-        ...prevState,
-        [name]: [...prevState[name], value],
+      setSurveyData((prev) => ({
+        ...prev,
+        [name]: [...prev[name], value],
       }));
     } else {
-      setSurveyData((prevState) => ({
-        ...prevState,
-        [name]: prevState[name].filter((v) => v !== value),
+      setSurveyData((prev) => ({
+        ...prev,
+        [name]: prev[name].filter((v) => v !== value),
       }));
     }
   };
